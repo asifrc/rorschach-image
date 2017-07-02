@@ -21,6 +21,20 @@ var showInkblot = function(req, res, id) {
   });
 };
 
+var randomImageId = function() {
+  var imageCount = 10;
+  var id = Math.ceil(Math.random() * imageCount);
+  return id;
+}
+
+router.get('/', function(req, res, next) {
+  var id = randomImageId();
+  var data = {
+    "url": "/inkblots/blot/" + id
+  };
+  res.json(data);
+});
+
 router.get('/blot/:id', function(req, res) {
   showInkblot(req, res, req.params.id);
 });
